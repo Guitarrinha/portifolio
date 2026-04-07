@@ -1,40 +1,68 @@
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 70px; /* Altura da barra de navegação + um pouco de espaço */
+    scroll-padding-top: 70px;
 }
 body {
-    padding-top: 70px; /* Para compensar a barra de navegação fixa no topo */
-    background-color: #0a192f; /* Dark futuristic background */
-    color: #ccd6f6; /* Light text for contrast */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
+    padding-top: 70px;
+    background: linear-gradient(135deg, #0a192f 0%, #112240 100%);
+    color: #e6f1ff;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 /* Estilos da Barra de Navegação Futurista */
 .navbar-futuristic {
-    background-color: #0d1b30; /* Um pouco diferente do body para destacar */
-    border-bottom: 1px solid #233554; /* Borda sutil */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    background: linear-gradient(90deg, #0d1b30 0%, #1a2332 100%);
+    border-bottom: 1px solid #64ffda;
+    box-shadow: 0 4px 20px rgba(100, 255, 218, 0.1);
+    backdrop-filter: blur(10px);
 }
 .navbar-futuristic .navbar-brand {
     color: #64ffda;
-    font-weight: 500;
-    letter-spacing: 0.05em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
 }
 .navbar-futuristic .navbar-brand:hover {
     color: #88fff1;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
 }
 .navbar-futuristic .nav-link {
     color: #a8b2d1;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: color 0.3s ease, background-color 0.3s ease;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+.navbar-futuristic .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #64ffda;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+.navbar-futuristic .nav-link:hover::before,
+.navbar-futuristic .nav-link.active::before {
+    width: 100%;
+    left: 0;
 }
 .navbar-futuristic .nav-link:hover,
 .navbar-futuristic .nav-link.active {
     color: #64ffda;
-    background-color: #112240;
+    background: rgba(100, 255, 218, 0.1);
+    box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
 }
 .navbar-futuristic .navbar-toggler {
     border-color: #233554;
@@ -52,152 +80,250 @@ body {
 
 /* Estilos do Header com Foto */
 .header-custom {
-    background-color: #112240;
+    background: linear-gradient(135deg, #112240 0%, #1a2332 100%);
     color: #64ffda;
-    padding: 3rem 1rem; 
-    margin-bottom: 2rem;
-    border-radius: .5rem;
-    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+    padding: 4rem 2rem;
+    margin-bottom: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     border-left: 5px solid #64ffda;
+    position: relative;
+    overflow: hidden;
+}
+.header-custom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%2364ffda" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%2364ffda" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.1;
+    pointer-events: none;
 }
 .profile-photo {
-    width: 180px; 
-    height: 180px;
-    border-radius: 50%; 
-    object-fit: cover; 
-    border: 4px solid #64ffda; 
-    box-shadow: 0 0 15px rgba(100, 255, 218, 0.3); 
-    margin-left: auto; 
-    margin-right: auto; 
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #64ffda;
+    box-shadow: 0 0 30px rgba(100, 255, 218, 0.4);
+    margin-left: auto;
+    margin-right: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.profile-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(100, 255, 218, 0.6);
 }
 .header-text-content {
     text-align: center;
+    z-index: 1;
+    position: relative;
 }
-@media (min-width: 768px) { /* md breakpoint do Bootstrap */
+@media (min-width: 768px) {
     .header-custom {
-        padding: 3rem 2rem; 
+        padding: 4rem 3rem;
     }
     .header-text-content {
         text-align: left;
     }
     .profile-photo {
-      margin-left: 0; 
-      margin-right: 0; 
+        margin-left: 0;
+        margin-right: 0;
     }
 }
 .header-custom h1 {
-    font-weight: 500;
-    font-size: 2.5rem; 
-    letter-spacing: 0.05em;
-    color: #64ffda; 
+    font-weight: 700;
+    font-size: 3rem;
+    letter-spacing: 0.1em;
+    color: #64ffda;
+    text-shadow: 0 0 20px rgba(100, 255, 218, 0.5);
+    margin-bottom: 1rem;
 }
 .header-custom p.lead {
-    color: #a8b2d1;
-    font-size: 1.2rem; 
-    margin-bottom: 0.5rem;
+    color: #e6f1ff;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    font-weight: 400;
 }
 .header-custom p {
     color: #a8b2d1;
-    font-size: 1rem; 
+    font-size: 1.1rem;
 }
-.header-custom .profile-links a{
+.header-custom .profile-links a {
     color: #64ffda;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
-.header-custom .profile-links a:hover{
-    color: #ccd6f6;
+.header-custom .profile-links a:hover {
+    color: #e6f1ff;
+    transform: translateY(-2px);
 }
 
 .section-card {
-    background-color: #112240;
-    color: #ccd6f6;
+    background: linear-gradient(135deg, #112240 0%, #1a2332 100%);
+    color: #e6f1ff;
     border: 1px solid #233554;
-    border-radius: .5rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+.section-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+.section-card:hover::before {
+    left: 100%;
 }
 .section-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    border-color: #64ffda;
 }
 .card-title {
     color: #64ffda;
-    border-bottom: 2px solid #64ffda;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
-    font-weight: 500;
-    font-size: 1.5rem;
+    border-bottom: 3px solid #64ffda;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    font-size: 1.75rem;
+    text-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
 }
 .job .date, .education-item .date {
     font-style: italic;
     color: #a8b2d1;
-    font-size: 0.9em;
+    font-size: 0.95em;
+    margin-bottom: 1rem;
 }
 
 .course-description { /* NOVO ESTILO ADICIONADO */
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: #a8b2d1; /* Cor de texto suave, consistente com .date e .text-muted */
     margin-top: 0.75rem;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 .skills-list .badge {
-    background-color: #233554;
+    background: linear-gradient(135deg, #233554 0%, #1a2332 100%);
     color: #64ffda;
-    border: 1px solid #64ffda;
-    margin: 0.2rem;
-    font-size: 0.9rem;
-    border-radius: 0.3rem;
-    padding: 0.5em 0.75em;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    cursor: default; 
+    border: 2px solid #64ffda;
+    margin: 0.3rem;
+    font-size: 0.95rem;
+    border-radius: 25px;
+    padding: 0.6em 1em;
+    transition: all 0.3s ease;
+    cursor: default;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 .skills-list .badge:hover {
-    background-color: #64ffda;
+    background: linear-gradient(135deg, #64ffda 0%, #88fff1 100%);
     color: #0a192f;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(100, 255, 218, 0.4);
 }
 .skills-list .badge.bg-primary, .skills-list .badge.bg-secondary, .skills-list .badge.bg-info, .skills-list .badge.bg-success, .skills-list .badge.bg-warning, .skills-list .badge.bg-light {
-    background-color: #233554 !important;
+    background: linear-gradient(135deg, #233554 0%, #1a2332 100%) !important;
     color: #64ffda !important;
-    border: 1px solid #64ffda !important;
+    border: 2px solid #64ffda !important;
 }
  .skills-list .badge.bg-primary:hover, .skills-list .badge.bg-secondary:hover, .skills-list .badge.bg-info:hover, .skills-list .badge.bg-success:hover, .skills-list .badge.bg-warning:hover, .skills-list .badge.bg-light:hover {
-    background-color: #64ffda !important;
+    background: linear-gradient(135deg, #64ffda 0%, #88fff1 100%) !important;
     color: #0a192f !important;
 }
 
 footer {
-    background-color: #0a192f;
-    border-top: 1px solid #233554;
+    background: linear-gradient(135deg, #0a192f 0%, #112240 100%);
+    border-top: 2px solid #64ffda;
     color: #a8b2d1;
-    padding: 2rem 0;
-    margin-top: 2rem;
+    padding: 3rem 0;
+    margin-top: 3rem;
     text-align: center;
+    position: relative;
 }
-.profile-links a { 
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #64ffda, transparent);
+}
+.profile-links a {
     color: #64ffda;
     text-decoration: none;
-    margin: 0 10px;
-    transition: color 0.3s ease;
+    margin: 0 20px;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+.profile-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #64ffda;
+    transition: width 0.3s ease;
+}
+.profile-links a:hover::after {
+    width: 100%;
 }
 .profile-links a:hover {
-    color: #ccd6f6;
+    color: #e6f1ff;
+    transform: translateY(-3px);
 }
 .job h4 {
-     margin-top: 1rem;
+     margin-top: 1.5rem;
      color: #64ffda;
-     font-weight: normal;
+     font-weight: 600;
+     font-size: 1.25rem;
 }
 .list-group-item {
-    background-color: transparent;
-    color: #ccd6f6;
+    background: rgba(26, 35, 50, 0.5);
+    color: #e6f1ff;
     border-color: #233554;
+    transition: background 0.3s ease;
+}
+.list-group-item:hover {
+    background: rgba(100, 255, 218, 0.1);
 }
 .text-muted {
     color: #a8b2d1 !important;
 }
 .card-subtitle {
     color: #a8b2d1 !important;
+    font-weight: 400;
+}
+
+/* Animações de entrada */
+.section-card {
+    animation: slideInUp 0.6s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
     font-size: 1rem;
     margin-top: 0.5rem;
 }
