@@ -208,13 +208,6 @@ body {
     margin-bottom: 1rem;
 }
 
-.course-description { /* NOVO ESTILO ADICIONADO */
-    font-size: 0.95rem;
-    color: #a8b2d1; /* Cor de texto suave, consistente com .date e .text-muted */
-    margin-top: 0.75rem;
-    line-height: 1.6;
-}
-
 .skills-list .badge {
     background: linear-gradient(135deg, #233554 0%, #1a2332 100%);
     color: #64ffda;
